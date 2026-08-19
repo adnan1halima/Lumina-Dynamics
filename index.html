@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lumina Dynamics — Powering Tomorrow, Responsibly</title>
+<meta name="description" content="Lumina Dynamics — global smart energy and sustainability solutions. Solar systems, energy storage, and sustainability consulting." />
+
+<!-- Google Fonts: Poppins (display) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome (icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- AOS (scroll reveal) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+<noscript><style>[data-aos]{opacity:1 !important; transform:none !important;}</style></noscript>
+
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root{
+  --deep-green: #0B3D2E;
+  --deep-green-light: #145c46;
+  --deep-navy: #0A2540;
+  --bg-soft: #F6F7F5;
+  --bg-panel: #EDEFEB;
+  --white: #FFFFFF;
+  --ink: #10201A;
+  --ink-muted: #4C5D57;
+  --gold: #D9A441;       /* signature accent: "solar current" gold */
+  --gold-soft: #F0C874;
+  --line: rgba(11,61,46,0.12);
+
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  --shadow-soft: 0 10px 30px rgba(10,37,64,0.08);
+  --shadow-strong: 0 20px 50px rgba(10,37,64,0.16);
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg-soft);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+img{ max-width:100%; display:block; }
+a{ text-decoration:none; color:inherit; }
+ul{ list-style:none; }
+button{ font-family:inherit; cursor:pointer; border:none; }
+
+h1,h2,h3,h4{ font-family: var(--font-display); color: var(--deep-navy); line-height:1.15; }
+
+.container{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:0.78rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color: var(--deep-green);
+  margin-bottom:14px;
+}
+.eyebrow::before{
+  content:"";
+  width:22px; height:2px;
+  background: var(--gold);
+  display:inline-block;
+}
+
+.section-head{
+  max-width:640px;
+  margin-bottom:56px;
+}
+.section-head h2{
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight:700;
+  margin-bottom:16px;
+}
+.section-head p{
+  color: var(--ink-muted);
+  font-size:1.05rem;
+}
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+
+section{ padding:110px 0; position:relative; }
+
+/* signature: thin animated "current" divider used between key sections */
+.current-line{
+  position:relative;
+  height:2px;
+  width:100%;
+  background: var(--line);
+  overflow:hidden;
+}
+.current-line::after{
+  content:"";
+  position:absolute;
+  top:0; left:-30%;
+  width:30%; height:100%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: currentFlow 5s linear infinite;
+}
+@keyframes currentFlow{
+  0%{ left:-30%; }
+  100%{ left:100%; }
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:15px 30px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:0.01em;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+}
+.btn-primary{
+  background: var(--gold);
+  color: var(--deep-navy);
+  box-shadow: 0 10px 24px rgba(217,164,65,0.35);
+}
+.btn-primary:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(217,164,65,0.45);
+}
+.btn-outline{
+  background: transparent;
+  color: var(--white);
+  border:1.5px solid rgba(255,255,255,0.55);
+}
+.btn-outline:hover{
+  background: rgba(255,255,255,0.12);
+  border-color: var(--white);
+}
+.btn-outline.dark{
+  color: var(--deep-navy);
+  border-color: rgba(10,37,64,0.35);
+}
+.btn-outline.dark:hover{
+  background: rgba(10,37,64,0.06);
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  padding:22px 0;
+  transition: padding .4s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease);
+}
+.navbar .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.navbar.scrolled{
+  padding:14px 0;
+  background: rgba(246,247,245,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 24px rgba(10,37,64,0.08);
+}
+
+.brand{ display:flex; align-items:center; gap:10px; }
+.brand-mark{
+  width:38px; height:38px;
+  border-radius:10px;
+  background: linear-gradient(145deg, var(--deep-green), var(--deep-navy));
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.brand-mark::before{
+  content:"";
+  width:14px; height:14px;
+  background: var(--gold);
+  clip-path: polygon(45% 0, 100% 0, 40% 55%, 65% 55%, 20% 100%, 30% 45%, 0 45%);
+}
+.brand-name{
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size:1.12rem;
+  color: var(--deep-navy);
+  letter-spacing:-0.01em;
+}
+.navbar.scrolled .brand-name,
+.navbar:not(.scrolled) .brand-name{ color: var(--deep-navy); }
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:38px;
+}
+.nav-links a{
+  font-family: var(--font-display);
+  font-weight:500;
+  font-size:0.92rem;
+  color: var(--deep-navy);
+  position:relative;
+  padding:4px 0;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute; left:0; bottom:-2px;
+  width:0; height:2px;
+  background: var(--gold);
+  transition: width .3s var(--ease);
+}
+.nav-links a:hover::after{ width:100%; }
+
+.nav-cta{ display:flex; align-items:center; gap:22px; }
+.nav-cta .btn{ padding:11px 22px; font-size:0.85rem; }
+
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  padding:6px;
+}
+.nav-toggle span{
+  width:24px; height:2px;
+  background: var(--deep-navy);
+  transition: all .3s var(--ease);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  background:
+    linear-gradient(160deg, rgba(11,61,46,0.94) 0%, rgba(10,37,64,0.92) 100%),
+    url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+  overflow:hidden;
+  padding-top:120px;
+}
+.hero-grid-fx{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse at 60% 40%, black 10%, transparent 70%);
+  pointer-events:none;
+}
+.hero-orb{
+  position:absolute;
+  width:520px; height:520px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(217,164,65,0.35), transparent 70%);
+  top:-120px; right:-120px;
+  filter: blur(10px);
+  animation: pulseOrb 7s ease-in-out infinite;
+}
+@keyframes pulseOrb{
+  0%,100%{ transform:scale(1); opacity:0.8; }
+  50%{ transform:scale(1.15); opacity:1; }
+}
+.hero .container{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+}
+.hero .eyebrow{ color: var(--gold-soft); }
+.hero .eyebrow::before{ background: var(--gold-soft); }
+.hero h1{
+  color: var(--white);
+  font-size: clamp(2.4rem, 5.5vw, 4.1rem);
+  font-weight:800;
+  letter-spacing:-0.01em;
+  margin-bottom:22px;
+}
+.hero h1 em{
+  font-style:normal;
+  color: var(--gold-soft);
+}
+.hero-underline{
+  display:block;
+  width:120px; height:3px;
+  margin:20px 0 26px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  position:relative;
+  overflow:hidden;
+}
+.hero-underline::after{
+  content:"";
+  position:absolute; top:0; left:-40%;
+  width:40%; height:100%;
+  background: rgba(255,255,255,0.9);
+  animation: currentFlow 3.5s linear infinite;
+}
+.hero p.lead{
+  color: rgba(255,255,255,0.82);
+  font-size:1.12rem;
+  max-width:560px;
+  margin-bottom:38px;
+}
+.hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+.scroll-cue{
+  position:absolute;
+  bottom:36px; left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  color: rgba(255,255,255,0.65);
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-family: var(--font-display);
+}
+.scroll-cue .dot-track{
+  width:1px; height:34px;
+  background: rgba(255,255,255,0.3);
+  position:relative;
+  overflow:hidden;
+}
+.scroll-cue .dot-track::after{
+  content:"";
+  position:absolute; top:-34px; left:0;
+  width:1px; height:34px;
+  background: var(--gold-soft);
+  animation: dotFall 2.2s ease-in-out infinite;
+}
+@keyframes dotFall{
+  0%{ top:-34px; }
+  100%{ top:34px; }
+}
+
+/* ============================================
+   ABOUT
+   ============================================ */
+.about{ background: var(--bg-soft); }
+.about-wrap{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+.about-copy p{
+  color: var(--ink-muted);
+  margin-bottom:18px;
+  font-size:1.02rem;
+}
+.about-copy p strong{ color: var(--deep-navy); }
+
+.stats-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:20px;
+  margin-top:44px;
+}
+.stat-card{
+  background: var(--white);
+  border:1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding:26px 18px;
+  text-align:center;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.stat-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-soft); }
+.stat-num{
+  font-family: var(--font-display);
+  font-weight:800;
+  font-size:2.1rem;
+  color: var(--deep-green);
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  gap:2px;
+}
+.stat-label{
+  margin-top:8px;
+  font-size:0.82rem;
+  color: var(--ink-muted);
+  font-weight:500;
+}
+
+.about-visual{
+  position:relative;
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  box-shadow: var(--shadow-strong);
+  aspect-ratio: 4/5;
+}
+.about-visual img{ width:100%; height:100%; object-fit:cover; }
+.about-visual::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(200deg, rgba(11,61,46,0.15), transparent 55%);
+}
+.about-badge{
+  position:absolute;
+  bottom:22px; left:22px;
+  right:22px;
+  background: rgba(10,37,64,0.82);
+  backdrop-filter: blur(8px);
+  color:#fff;
+  border-radius: var(--radius-md);
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.about-badge i{ color: var(--gold-soft); font-size:1.4rem; }
+.about-badge span{ font-size:0.85rem; line-height:1.4; color:rgba(255,255,255,0.85); }
+
+/* ============================================
+   SERVICES
+   ============================================ */
+.services{ background: var(--bg-panel); }
+.services-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:28px;
+}
+.service-card{
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding:38px 32px;
+  border:1px solid var(--line);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.service-card::before{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, var(--deep-green), var(--gold));
+  transform: scaleX(0);
+  transform-origin:left;
+  transition: transform .45s var(--ease);
+}
+.service-card:hover{
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+  border-color: transparent;
+}
+.service-card:hover::before{ transform: scaleX(1); }
+.service-icon{
+  width:58px; height:58px;
+  border-radius:14px;
+  background: linear-gradient(145deg, var(--deep-green), var(--deep-green-light));
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:26px;
+  transition: transform .4s var(--ease);
+}
+.service-card:hover .service-icon{ transform: rotate(-8deg) scale(1.06); }
+.service-icon i{ color: var(--gold-soft); font-size:1.5rem; }
+.service-card h3{ font-size:1.28rem; margin-bottom:12px; }
+.service-card p{ color: var(--ink-muted); font-size:0.96rem; margin-bottom:20px; }
+.service-link{
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:0.86rem;
+  color: var(--deep-green);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.service-link i{ font-size:0.78rem; transition: transform .3s var(--ease); }
+.service-card:hover .service-link i{ transform: translateX(4px); }
+
+/* ============================================
+   PROJECTS
+   ============================================ */
+.projects{ background: var(--bg-soft); }
+.projects-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:22px;
+}
+.project-card{
+  position:relative;
+  border-radius: var(--radius-md);
+  overflow:hidden;
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-soft);
+}
+.project-card:first-child{
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+.project-card img{
+  width:100%; height:100%; object-fit:cover;
+  transition: transform .7s var(--ease);
+}
+.project-card:hover img{ transform: scale(1.08); }
+.project-overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(10,37,64,0.92) 0%, rgba(10,37,64,0.15) 55%, transparent 75%);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:26px;
+  opacity:0;
+  transform: translateY(12px);
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+}
+.project-card:hover .project-overlay{ opacity:1; transform: translateY(0); }
+.project-tag{
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color: var(--gold-soft);
+  margin-bottom:8px;
+}
+.project-overlay h4{ color:#fff; font-size:1.15rem; }
+
+/* ============================================
+   TEAM
+   ============================================ */
+.team{ background: var(--bg-panel); }
+.team-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:30px;
+}
+.team-card{ text-align:center; }
+.team-photo{
+  width:150px; height:150px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 20px;
+  border:4px solid var(--white);
+  box-shadow: var(--shadow-soft);
+  position:relative;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.team-photo img{ width:100%; height:100%; object-fit:cover; }
+.team-card:hover .team-photo{ transform: translateY(-8px); box-shadow: var(--shadow-strong); }
+.team-card h4{ font-size:1.05rem; margin-bottom:4px; }
+.team-role{ color: var(--gold); font-size:0.82rem; font-weight:600; font-family: var(--font-display); margin-bottom:12px; }
+.team-social{ display:flex; justify-content:center; gap:12px; }
+.team-social a{
+  width:32px; height:32px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--deep-navy);
+  font-size:0.8rem;
+  transition: all .3s var(--ease);
+}
+.team-social a:hover{ background: var(--deep-green); color:#fff; border-color: var(--deep-green); }
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonials{
+  background: linear-gradient(160deg, var(--deep-navy), var(--deep-green));
+  color:#fff;
+  text-align:center;
+}
+.testimonials .section-head p{ color: rgba(255,255,255,0.7); }
+.testimonials .section-head h2{ color:#fff; }
+.testimonial-track{
+  max-width:720px;
+  margin:0 auto;
+  position:relative;
+  min-height:220px;
+}
+.testimonial-slide{
+  position:absolute; inset:0;
+  opacity:0;
+  transform: translateY(16px);
+  pointer-events:none;
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.testimonial-slide.active{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+  position:relative;
+}
+.testimonial-slide i.quote-mark{
+  font-size:1.6rem;
+  color: var(--gold-soft);
+  margin-bottom:20px;
+}
+.testimonial-slide p{
+  font-size:1.28rem;
+  font-weight:400;
+  line-height:1.6;
+  margin-bottom:30px;
+  color: rgba(255,255,255,0.92);
+}
+.testimonial-person{ display:flex; align-items:center; justify-content:center; gap:14px; }
+.testimonial-person img{
+  width:52px; height:52px; border-radius:50%; object-fit:cover;
+  border:2px solid var(--gold-soft);
+}
+.testimonial-person div{ text-align:left; }
+.testimonial-person h5{ font-family: var(--font-display); font-size:0.95rem; }
+.testimonial-person span{ font-size:0.8rem; color: rgba(255,255,255,0.6); }
+
+.testimonial-dots{
+  display:flex; justify-content:center; gap:10px; margin-top:38px;
+}
+.testimonial-dots button{
+  width:9px; height:9px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.3);
+  transition: all .3s var(--ease);
+}
+.testimonial-dots button.active{ background: var(--gold-soft); width:26px; border-radius:6px; }
+
+/* ============================================
+   CONTACT
+   ============================================ */
+.contact{ background: var(--bg-soft); }
+.contact-wrap{
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap:0;
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  box-shadow: var(--shadow-strong);
+}
+.contact-info{
+  background: linear-gradient(160deg, var(--deep-green), var(--deep-navy));
+  color:#fff;
+  padding:56px 46px;
+}
+.contact-info h3{ color:#fff; font-size:1.6rem; margin-bottom:16px; }
+.contact-info p{ color: rgba(255,255,255,0.75); margin-bottom:36px; font-size:0.98rem; }
+.contact-item{
+  display:flex; align-items:flex-start; gap:16px;
+  margin-bottom:26px;
+}
+.contact-item i{
+  width:42px; height:42px;
+  border-radius:10px;
+  background: rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--gold-soft);
+  flex-shrink:0;
+}
+.contact-item h5{ font-family: var(--font-display); font-size:0.92rem; margin-bottom:3px; }
+.contact-item span{ font-size:0.86rem; color: rgba(255,255,255,0.7); }
+.contact-map{
+  margin-top:36px;
+  border-radius: var(--radius-md);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.15);
+}
+.contact-map iframe{ width:100%; height:160px; border:0; filter: grayscale(0.3) brightness(0.9); }
+
+.contact-form{
+  background: var(--white);
+  padding:56px 46px;
+}
+.contact-form h3{ font-size:1.5rem; margin-bottom:8px; }
+.contact-form > p{ color: var(--ink-muted); margin-bottom:30px; font-size:0.95rem; }
+.form-row{ margin-bottom:20px; }
+.form-row label{
+  display:block;
+  font-family: var(--font-display);
+  font-size:0.82rem;
+  font-weight:600;
+  margin-bottom:8px;
+  color: var(--deep-navy);
+}
+.form-row input,
+.form-row textarea{
+  width:100%;
+  padding:14px 16px;
+  border-radius: var(--radius-sm);
+  border:1.5px solid var(--line);
+  font-family: var(--font-body);
+  font-size:0.95rem;
+  background: var(--bg-soft);
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.form-row input:focus,
+.form-row textarea:focus{
+  outline:none;
+  border-color: var(--deep-green);
+  box-shadow: 0 0 0 4px rgba(11,61,46,0.08);
+}
+.form-row textarea{ resize:vertical; min-height:120px; }
+.contact-form .btn-primary{ width:100%; justify-content:center; }
+.form-note{
+  margin-top:16px;
+  font-size:0.82rem;
+  color: var(--deep-green);
+  display:none;
+  align-items:center;
+  gap:8px;
+}
+.form-note.visible{ display:flex; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer{
+  background: var(--deep-navy);
+  color: rgba(255,255,255,0.7);
+  padding:70px 0 26px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap:40px;
+  margin-bottom:56px;
+}
+.footer-brand .brand-name{ color:#fff; }
+.footer-brand p{ margin-top:16px; font-size:0.9rem; max-width:280px; color: rgba(255,255,255,0.55); }
+.footer-social{ display:flex; gap:10px; margin-top:24px; }
+.footer-social a{
+  width:36px; height:36px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.18);
+  display:flex; align-items:center; justify-content:center;
+  transition: all .3s var(--ease);
+}
+.footer-social a:hover{ background: var(--gold); color: var(--deep-navy); border-color: var(--gold); }
+.footer-col h5{
+  font-family: var(--font-display);
+  color:#fff;
+  font-size:0.9rem;
+  margin-bottom:20px;
+  letter-spacing:0.02em;
+}
+.footer-col ul li{ margin-bottom:12px; }
+.footer-col ul li a{ font-size:0.88rem; transition: color .3s var(--ease); }
+.footer-col ul li a:hover{ color: var(--gold-soft); }
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:0.82rem;
+  color: rgba(255,255,255,0.45);
+}
+.footer-bottom a{ color: rgba(255,255,255,0.45); }
+.footer-bottom a:hover{ color: var(--gold-soft); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 980px){
+  .about-wrap{ grid-template-columns:1fr; gap:44px; }
+  .about-visual{ order:-1; max-width:440px; margin:0 auto; }
+  .services-grid{ grid-template-columns: repeat(2,1fr); }
+  .team-grid{ grid-template-columns: repeat(2,1fr); gap:36px; }
+  .projects-grid{ grid-template-columns: repeat(2,1fr); }
+  .project-card:first-child{ grid-column: span 2; }
+  .footer-grid{ grid-template-columns: 1fr 1fr; }
+  .contact-wrap{ grid-template-columns:1fr; }
+}
+
+@media (max-width: 760px){
+  section{ padding:76px 0; }
+  .nav-links, .nav-cta .btn-outline{ display:none; }
+  .nav-toggle{ display:flex; }
+  .nav-links.open{
+    display:flex;
+    flex-direction:column;
+    position:absolute;
+    top:100%; left:0; right:0;
+    background: var(--white);
+    padding:24px;
+    gap:18px;
+    box-shadow: var(--shadow-soft);
+  }
+  .services-grid{ grid-template-columns:1fr; }
+  .stats-grid{ grid-template-columns: 1fr; gap:14px; }
+  .projects-grid{ grid-template-columns:1fr; }
+  .project-card:first-child{ grid-column:span 1; grid-row:span 1; aspect-ratio:4/5; }
+  .team-grid{ grid-template-columns:1fr; max-width:280px; margin:0 auto; }
+  .footer-grid{ grid-template-columns:1fr; gap:36px; }
+  .contact-info, .contact-form{ padding:38px 26px; }
+  .hero-actions{ flex-direction:column; align-items:flex-start; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  html{ scroll-behavior:auto; }
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#home" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Lumina Dynamics</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline dark">Get in Touch</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<header class="hero" id="home">
+  <div class="hero-grid-fx" aria-hidden="true"></div>
+  <div class="hero-orb" aria-hidden="true"></div>
+  <div class="container">
+    <p class="eyebrow">Global Smart Energy Solutions</p>
+    <h1>Powering <em>Tomorrow</em>, Responsibly</h1>
+    <span class="hero-underline" aria-hidden="true"></span>
+    <p class="lead">Lumina Dynamics designs intelligent solar systems, energy storage, and sustainability strategy for cities and enterprises across three continents — built to outlast the century.</p>
+    <div class="hero-actions">
+      <a href="#about" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> اكتشف المزيد</a>
+      <a href="#projects" class="btn btn-outline">View Our Projects</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <span class="dot-track"></span>
+  </div>
+</header>
+
+<!-- ============================================
+     ABOUT
+     ============================================ -->
+<section id="about" class="about">
+  <div class="container about-wrap">
+    <div class="about-copy" data-aos="fade-up">
+      <p class="eyebrow">Who We Are</p>
+      <h2>A decade of engineering the world's cleaner grid</h2>
+      <p>Founded in <strong>2014 in Zurich</strong>, Lumina Dynamics began as a small team of energy engineers with one conviction: sustainability and reliability shouldn't be a trade-off. Today we design, deploy, and maintain smart energy infrastructure for utilities, municipalities, and industry leaders.</p>
+      <p>With regional hubs in <strong>Dubai, Singapore, and Austin</strong>, our teams combine local grid expertise with a shared engineering standard — so every Lumina deployment performs the same, wherever it stands.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num"><span class="counter" data-target="450">0</span>+</div>
+          <div class="stat-label">Employees Worldwide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><span class="counter" data-target="3">0</span></div>
+          <div class="stat-label">Continents Served</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><span class="counter" data-target="10">0</span></div>
+          <div class="stat-label">Years of Expertise</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-visual" data-aos="fade-up" data-aos-delay="150">
+      <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1000&auto=format&fit=crop" alt="Lumina Dynamics engineers reviewing a solar installation" loading="lazy">
+      <div class="about-badge">
+        <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+        <span>Headquartered in Zurich, operating on three continents since 2014.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="current-line" aria-hidden="true"></div>
+
+<!-- ============================================
+     SERVICES
+     ============================================ -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <p class="eyebrow" style="justify-content:center;">What We Do</p>
+      <h2>Three disciplines, one grid</h2>
+      <p>From generation to storage to strategy, we cover the full lifecycle of a resilient energy system.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card" data-aos="fade-up">
+        <div class="service-icon"><i class="fa-solid fa-solar-panel"></i></div>
+        <h3>Smart Solar Systems</h3>
+        <p>Adaptive photovoltaic arrays with AI-driven load balancing, engineered to maximize yield across shifting weather and demand patterns.</p>
+        <a href="#contact" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="service-icon"><i class="fa-solid fa-car-battery"></i></div>
+        <h3>Energy Storage Solutions</h3>
+        <p>Modular battery infrastructure that captures surplus generation and releases it precisely when the grid needs it most.</p>
+        <a href="#contact" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="service-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Sustainability Consulting</h3>
+        <p>Decarbonization roadmaps grounded in real operating data — built with your engineers, not just for them.</p>
+        <a href="#contact" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PROJECTS
+     ============================================ -->
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <p class="eyebrow">Selected Work</p>
+      <h2>Projects across the grid</h2>
+      <p>A sample of deployments spanning utility-scale solar, urban storage, and consulting engagements.</p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card" data-aos="fade-up">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1200&auto=format&fit=crop" alt="Utility-scale wind and solar farm" loading="lazy">
+        <div class="project-overlay">
+          <p class="project-tag">Utility Scale</p>
+          <h4>Nordholm Wind &amp; Solar Array</h4>
+        </div>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=800&auto=format&fit=crop" alt="Rooftop solar installation" loading="lazy">
+        <div class="project-overlay">
+          <p class="project-tag">Commercial</p>
+          <h4>Austin Rooftop Grid</h4>
+        </div>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Data center energy management" loading="lazy">
+        <div class="project-overlay">
+          <p class="project-tag">Storage</p>
+          <h4>Singapore Storage Hub</h4>
+        </div>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=800&auto=format&fit=crop" alt="Desert solar field" loading="lazy">
+        <div class="project-overlay">
+          <p class="project-tag">Utility Scale</p>
+          <h4>Dubai Desert Solar Field</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="current-line" aria-hidden="true"></div>
+
+<!-- ============================================
+     TEAM
+     ============================================ -->
+<section id="team" class="team">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <p class="eyebrow" style="justify-content:center;">Leadership</p>
+      <h2>The people behind the grid</h2>
+      <p>A global team of engineers and strategists working across four time zones.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card" data-aos="fade-up">
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=400&auto=format&fit=crop" alt="Portrait of Elena Fischer" loading="lazy"></div>
+        <h4>Elena Fischer</h4>
+        <p class="team-role">Chief Executive Officer</p>
+        <div class="team-social">
+          <a href="#" aria-label="Elena Fischer on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Email Elena Fischer"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Portrait of Marcus Chen" loading="lazy"></div>
+        <h4>Marcus Chen</h4>
+        <p class="team-role">Chief Technology Officer</p>
+        <div class="team-social">
+          <a href="#" aria-label="Marcus Chen on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Email Marcus Chen"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" alt="Portrait of Amara Okafor" loading="lazy"></div>
+        <h4>Amara Okafor</h4>
+        <p class="team-role">Head of Sustainability</p>
+        <div class="team-social">
+          <a href="#" aria-label="Amara Okafor on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Email Amara Okafor"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop" alt="Portrait of Daniel Krüger" loading="lazy"></div>
+        <h4>Daniel Krüger</h4>
+        <p class="team-role">VP, Global Operations</p>
+        <div class="team-social">
+          <a href="#" aria-label="Daniel Krüger on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Email Daniel Krüger"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TESTIMONIALS
+     ============================================ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <p class="eyebrow" style="justify-content:center; color:var(--gold-soft);">Client Voices</p>
+      <h2>Trusted by operators worldwide</h2>
+    </div>
+
+    <div class="testimonial-track" id="testimonialTrack">
+      <div class="testimonial-slide active">
+        <i class="fa-solid fa-quote-left quote-mark" aria-hidden="true"></i>
+        <p>Lumina's storage system cut our peak-hour costs dramatically within the first year, and their team was on-site for every milestone.</p>
+        <div class="testimonial-person">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Portrait of Sofia Almeida" loading="lazy">
+          <div>
+            <h5>Sofia Almeida</h5>
+            <span>Director of Infrastructure, Porto Municipal Utility</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <i class="fa-solid fa-quote-left quote-mark" aria-hidden="true"></i>
+        <p>What impressed us most was the honesty of the sustainability audit — no upsell, just a clear roadmap we could actually execute.</p>
+        <div class="testimonial-person">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" alt="Portrait of Raj Malhotra" loading="lazy">
+          <div>
+            <h5>Raj Malhotra</h5>
+            <span>Operations Lead, Meridian Manufacturing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <i class="fa-solid fa-quote-left quote-mark" aria-hidden="true"></i>
+        <p>Our rooftop array has run without a single unplanned outage since deployment. Lumina's monitoring dashboard alone paid for itself.</p>
+        <div class="testimonial-person">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=200&auto=format&fit=crop" alt="Portrait of Grace Lindqvist" loading="lazy">
+          <div>
+            <h5>Grace Lindqvist</h5>
+            <span>Facilities Director, Nordholm Logistics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-dots" id="testimonialDots"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     CONTACT
+     ============================================ -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <p class="eyebrow" style="justify-content:center;">Get In Touch</p>
+      <h2>Let's design your next grid</h2>
+      <p>Tell us about your site, your goals, and your timeline — our engineering team replies within two business days.</p>
+    </div>
+
+    <div class="contact-wrap" data-aos="fade-up">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p>Reach our global headquarters or one of our regional offices directly.</p>
+
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h5>Headquarters</h5>
+            <span>Bahnhofstrasse 45, 8001 Zürich, Switzerland</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <h5>Phone</h5>
+            <span>+41 44 555 0134</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <h5>Email</h5>
+            <span>hello@luminadynamics.example</span>
+          </div>
+        </div>
+
+        <div class="contact-map">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=8.528%2C47.365%2C8.548%2C47.378&layer=mapnik" title="Map of Lumina Dynamics headquarters in Zurich" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <h3>Send us a message</h3>
+        <p>Fill in the form and our team will get back to you shortly.</p>
+
+        <div class="form-row">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+        <p class="form-note" id="formNote"><i class="fa-solid fa-circle-check"></i> Thank you — your message has been received.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">Lumina Dynamics</span>
+        </a>
+        <p>Powering Tomorrow, Responsibly. Smart energy and sustainability solutions for a resilient world.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Leadership</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="#services">Smart Solar</a></li>
+          <li><a href="#services">Energy Storage</a></li>
+          <li><a href="#services">Sustainability Consulting</a></li>
+          <li><a href="#projects">Case Studies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Offices</h5>
+        <ul>
+          <li>Zürich, Switzerland (HQ)</li>
+          <li>Dubai, UAE</li>
+          <li>Singapore</li>
+          <li>Austin, USA</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Lumina Dynamics. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- AOS library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+
+<script>
+/* ============================================
+   INIT AOS
+   ============================================ */
+AOS.init({
+  duration: 800,
+  once: true,
+  offset: 60,
+  easing: 'ease-out-cubic'
+});
+
+/* Safety fallback: if AOS fails to load/trigger for any reason,
+   force all [data-aos] content visible so text is never stuck hidden. */
+setTimeout(() => {
+  document.querySelectorAll('[data-aos]').forEach(el => {
+    if (!el.classList.contains('aos-animate')) {
+      el.classList.add('aos-animate');
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    }
+  });
+}, 1800);
+
+/* ============================================
+   NAVBAR: scroll background + mobile toggle
+   ============================================ */
+const navbar = document.getElementById('navbar');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+navToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ============================================
+   COUNTER ANIMATION (About stats)
+   ============================================ */
+const counters = document.querySelectorAll('.counter');
+
+function animateCounter(el){
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 1600;
+  const start = performance.now();
+
+  function tick(now){
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+    el.textContent = Math.floor(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(tick);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(c => counterObserver.observe(c));
+
+/* ============================================
+   TESTIMONIALS CAROUSEL
+   ============================================ */
+const slides = document.querySelectorAll('.testimonial-slide');
+const dotsWrap = document.getElementById('testimonialDots');
+let current = 0;
+let autoTimer;
+
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.setAttribute('aria-label', 'Show testimonial ' + (i + 1));
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsWrap.appendChild(dot);
+});
+
+const dots = dotsWrap.querySelectorAll('button');
+
+function goToSlide(index){
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = index;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+  resetAutoplay();
+}
+
+function nextSlide(){
+  goToSlide((current + 1) % slides.length);
+}
+
+function resetAutoplay(){
+  clearInterval(autoTimer);
+  autoTimer = setInterval(nextSlide, 6000);
+}
+resetAutoplay();
+
+/* ============================================
+   CONTACT FORM (demo submission)
+   ============================================ */
+const contactForm = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  formNote.classList.add('visible');
+  contactForm.reset();
+  setTimeout(() => formNote.classList.remove('visible'), 5000);
+});
+
+/* ============================================
+   FOOTER YEAR
+   ============================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
